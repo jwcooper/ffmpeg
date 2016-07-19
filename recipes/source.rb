@@ -59,7 +59,7 @@ end
 bash 'compile_ffmpeg' do
   cwd "#{Chef::Config[:file_cache_path]}/ffmpeg"
   code <<-EOH
-    PKG_CONFIG_PATH=#{node['ffmpeg']['prefix']}/lib/pkgconfig ./configure --prefix=#{node['ffmpeg']['prefix']} --pkg-config-flags="--static" --extra-cflags="-I#{node['ffmpeg']['prefix']}/include" --extra-ldflags="-L#{node['ffmpeg']['prefix']}/lib" #{node['ffmpeg']['compile_flags'].join(' ')}
+    PKG_CONFIG_PATH=#{node['ffmpeg']['prefix']}/lib/pkgconfig ./configure --prefix=#{node['ffmpeg']['prefix']} #{node['ffmpeg']['compile_flags'].join(' ')}
     make clean && make && make install
   EOH
   creates creates_ffmpeg
